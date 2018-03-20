@@ -5,7 +5,7 @@ import { fetchUser, logoutUser } from '../actions';
 import { withRouter } from 'react-router-dom';
 const { Item } = Menu;
 
-
+// Displays header based on users login state.
 class Header extends Component {
 
 

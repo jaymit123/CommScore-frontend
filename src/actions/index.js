@@ -10,11 +10,14 @@ export const registerUser =  (values) => (dispatch) => {
 }
 
 
+
+// submits registeration code to cognito
 export const confirmUser =  (values) => (dispatch) => {
     const response = 'confirm user';
     dispatch({ 'type': FETCH_USER, 'payload': response });
 }
 
+// fetches currently logged in user details from cognito
 export const fetchUser =  (values) => (dispatch) => {
     //  const response = await axios.post('', {}).then((result) => result);
     const response = 'fetch user';

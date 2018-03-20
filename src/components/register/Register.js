@@ -13,6 +13,7 @@ class Register extends Component {
         this.state = { 'confirm': false };
     }
 
+// Display registeration confirmation form to user when button is clicked. 
     renderConfirmation() {
         if (!this.state.confirm) {
             return <Button type='normal' onClick={() => this.setState({ 'confirm': true })} >Confirm User</Button>

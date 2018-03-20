@@ -6,7 +6,7 @@ import Login from './Login';
 import Register from './register/Register';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-
+//Handle App Routes and display component based on url matched
 class App extends Component {
   render() {
     return (
