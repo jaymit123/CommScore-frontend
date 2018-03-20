@@ -4,25 +4,29 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import { confirmRegisterFields } from './registerFormFields';
 import { Field, reduxForm } from 'redux-form';
-import RegisterField from './RegisterField';
+import FormField from '../form/FormField';
 import { confirmUser } from '../../actions';
+import { validateConfirmation } from '../../utils/validate';
 const { Content } = Layout;
 const FormItem = Form.Item;
 
 
 class ConfirmRegister extends Component {
-
+/*
+confirmRegisterFields
+method handling submit
+*/
     renderFields() {
-        return _.map(confirmRegisterFields, ({ name, label, type }) => <Field component={RegisterField} type='text' key={name} name={name} label={label} htmltype={type} />)
+        return _.map(confirmRegisterFields, ({ name, label, type }) => <Field component={FormField} type='text' key={name} name={name} label={label} htmltype={type} />)
+   
     }
-
 
     render() {
         return (<Content style={{ height: '100%', textAlign: 'center' }}>
             <Form>
                 {this.renderFields()}
                 <FormItem>
-                    <Button onClick={this.props.handleSubmit(() => { this.props.confirmUser(this.props.form) })} type='primary' htmlType='submit' >Confirm</Button>
+                    <Button onClick={this.props.handleSubmit(() => { this.props.confirmUser(this.props.formValues) })} type='primary' htmlType='submit' >Register</Button>
                 </FormItem>
             </Form>
 
@@ -33,23 +37,19 @@ class ConfirmRegister extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        'confirmUser': (values) => dispatch(confirmUser(values))
+        'confirmUser': (values) => dispatch(confirmUser(values)),
+        
     }
 }
 
-const mapStateToProps = ({form: { confirm } }) => {
+const mapStateToProps = ({ form: { confirm } }) => {
     return {
-        form: confirm ? confirm.registeredFields : null
+        formValues: confirm ? confirm.values : null
 
     }
 }
 
 
-const validate = (values) => {
-const error = {};
 
 
-
- };
-
-export default reduxForm({ form: 'confirm' })(connect(mapStateToProps, mapDispatchToProps)(ConfirmRegister));
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({ form: 'confirm', validate: validateConfirmation })(ConfirmRegister));

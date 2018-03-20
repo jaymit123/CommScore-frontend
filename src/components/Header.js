@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Menu } from 'antd';
 import { connect } from 'react-redux';
-import { fetchUser, logoutUser } from '../actions';
+import { logoutUser, fetchUser } from '../actions';
 import { withRouter } from 'react-router-dom';
 const { Item } = Menu;
 
@@ -11,11 +11,12 @@ class Header extends Component {
 
     componentDidMount() {
         this.props.fetchUser();
-    }
+      }
+    
 
     renderContent() {
         if (this.props.auth) {
-            return [<Item key={'logout'}>Logout</Item>]
+            return [<Item key={'/compare'}>Compare</Item>, <Item key={'logout'}>Logout</Item>]
         } else {
             return [<Item key={'/register'}>Sign Up</Item>,
             <Item key={'/login'}>Sign In</Item>]
@@ -50,4 +51,4 @@ const mapStateToProps = ({ auth }) => {
 
 
 
-export default withRouter(connect(mapStateToProps, { fetchUser, logoutUser })(Header));
+export default withRouter(connect(mapStateToProps, { logoutUser, fetchUser })(Header));
