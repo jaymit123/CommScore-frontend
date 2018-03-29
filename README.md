@@ -1,18 +1,19 @@
-CommScore-frontend
-This WebApp provides stats to compare people in a community. 
+# CommScore-frontend
+This WebApp provides stats to compare people in a community anonymously. This repo holds front end components of the website.
+
 
 This repo holds the front end code of the project, The back end Implementation is provided at [CommScore-backend](https://www.github.com/jaymit123/CommScore-backend)
 
 
-## Services Used :
-
+Services Used :
 - AWS Lambda - Implementation of Microservices for different api calls.
 - API Gateway to route user requests to specific lambda function
 - AWS Cognito to handle user sign up and sign in
 - CloudFront to improve availablitiy and latency of the web app for global users.
 - Route53 - To Resolve DNS Requests.
-- Back End : [CommScore-backend](https://www.github.com/jaymit123/CommScore-backend)
-- Front End: React JS, Redux, React-Redux, React-Router, Axios, ReduxForm.
+
+* Back End : [CommScore-backend](https://www.github.com/jaymit123/CommScore-backend)
+* Front End: React JS, Redux, React-Redux, React-Router, Axios, ReduxForm.
 
 
 ## Built With

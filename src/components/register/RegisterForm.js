@@ -4,17 +4,19 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import registerFields from './registerFormFields';
 import { Field, reduxForm } from 'redux-form';
-import RegisterField from './RegisterField';
+import FormField from '../form/FormField';
 import { registerUser } from '../../actions';
-const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+import { validateRegistration } from '../../utils/validate';
+
 const { Content } = Layout;
 const FormItem = Form.Item;
 
 
 class RegisterForm extends Component {
 
+
     renderFields() {
-        return _.map(registerFields, ({ name, label, type }) => <Field component={RegisterField} type='text' key={name} name={name} label={label} htmltype={type} />)
+        return _.map(registerFields, ({ name, label, type }) => <Field component={FormField} type='text' key={name} name={name} label={label} htmltype={type} />)
     }
 
 
@@ -40,15 +42,10 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = ({ form: { register } }) => {
     return {
-        formValues: register ? register.registeredFields : null
+        formValues: register ? register.values : null
     }
 }
 
-const validate = (values) => {
-    const errors = {};
-    const email = values.email;
-    if (email.length && emailRegex.test(email) === false)  errors['email'] = "Please enter a valid email";
-}
 
 
-export default reduxForm({ form: 'register' } , validate)(connect(mapStateToProps, mapDispatchToProps)(RegisterForm));
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({ form: 'register', validate: validateRegistration })(RegisterForm));
