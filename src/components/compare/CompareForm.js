@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Form, Button } from 'antd';
+import { Layout, Form, Button, Icon } from 'antd';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import compareFormFields from './compareFormFields';
@@ -24,9 +24,11 @@ class CompareForm extends Component {
             <Form>
                 {this.renderFields()}
                 <FormItem>
-                    <Button onClick={this.props.handleSubmit(() => { this.props.submitDetails(this.props.formValues) })} type='primary' htmlType='submit' >Register</Button>
+                    <Button onClick={this.props.handleSubmit(() => { this.props.submitDetails(this.props.formValues) })} type='primary' htmlType='submit' >Upload<Icon style={{fontSize:24}}type="cloud-upload"/></Button>
                 </FormItem>
             </Form>
+
+            <Button onClick={() => this.props.toggleAlreadyStored()}> Data Already Stored ? </Button>
 
         </Content>)
     }

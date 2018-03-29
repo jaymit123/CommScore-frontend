@@ -8,7 +8,9 @@ const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,}
 
 export const validateRegistration = (values) => {
     const errors = {};
-    if (_.isEmpty(values)) return;
+    _.each(registerFields, ({ name }) => {
+        if (!values[name]) errors[name] = 'You must enter a ' + name;
+    });
     const email = values.email;
     if (email && emailRegex.test(email) === false) errors['email'] = "Please enter a valid email";
 
@@ -17,19 +19,15 @@ export const validateRegistration = (values) => {
 
 
     const confirmpass = values.confirmpass;
-    if (password && confirmpass && confirmpass != password) errors['confirmpass'] = "Please re-enter the above password.";
+    if (password && confirmpass && confirmpass !== password) errors['confirmpass'] = "Please re-enter the above password.";
 
 
-    _.each(registerFields, ({ name }) => {
-        if (!values[name]) errors[name] = 'You must enter a ' + name;
-    });
+
     return errors;
 }
 
 export const validateConfirmation = (values) => {
     const errors = {};
-    if (_.isEmpty(values)) return;
-
     _.each(confirmRegisterFields, ({ name }) => {
         if (!values[name]) errors[name] = 'You must enter a ' + name;
     });
@@ -38,8 +36,6 @@ export const validateConfirmation = (values) => {
 
 export const validateLogin = (values) => {
     const errors = {};
-    if (_.isEmpty(values)) return;
-
     _.each(loginFormFields, ({ name }) => {
         if (!values[name]) errors[name] = 'You must enter a ' + name;
     });
@@ -49,8 +45,6 @@ export const validateLogin = (values) => {
 
 export const validateCompare = (values) => {
     const errors = {};
-    if (_.isEmpty(values)) return;
-
     _.each(compareFormFields, ({ name }) => {
         if (!values[name]) errors[name] = 'You must enter a ' + name;
     });

@@ -24,7 +24,7 @@ class LoginForm extends Component {
             <Form>
                 {this.renderFields()}
                 <FormItem>
-                    <Button onClick={this.props.handleSubmit(() => { this.props.loginUser(this.props.formValues) })} type='primary' htmlType='submit' >Register</Button>
+                    <Button onClick={this.props.handleSubmit(() => { this.props.loginUser(this.props.formValues) })} type='primary' htmlType='submit' >Login</Button>
                 </FormItem>
             </Form>
 
